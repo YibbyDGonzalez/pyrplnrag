@@ -20,7 +20,7 @@ def load_articles():
     df = df[df["texto"].str.strip() != ""]
     df["texto"] = df["texto"].astype(str)
 
-    print(f"Artículos cargados: {len(df)}")
+    print(f"Libros cargados: {len(df)}")
     return df
 
 

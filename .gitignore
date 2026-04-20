@@ -1,4 +1,7 @@
+@"
+venv/
 .venv/
 .streamlit/secrets.toml
 data/raw/
 *.env
+"@ | Set-Content .gitignore -Encoding UTF8

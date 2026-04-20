@@ -64,11 +64,21 @@ def call_groq(prompt: str) -> str:
             {
                 "role": "system",
                 "content": (
-                    "Eres un asistente experto en normativa de tránsito en Colombia. "
-                    "Responde siempre basándote EXCLUSIVAMENTE en el contexto proporcionado. "
-                    "Si la respuesta no está en el contexto, responde: "
-                    "'No encontré información relevante en la normativa cargada.' "
-                    "No inventes leyes. Usa lenguaje claro y pedagógico."
+                    "Eres un experto en Medicina Basada en la Evidencia (MBE). "
+                    "Tu tarea es responder preguntas clínicas de manera clara, precisa y concisa, "
+                    "utilizando ÚNICAMENTE la información proporcionada en los textos de contexto. "
+
+                    "Reglas estrictas: "
+                    "- No uses conocimiento externo. "
+                    "- No inventes información. "
+                    "- Si la respuesta no está en el contexto, responde: "
+                    "'No hay suficiente información en los textos proporcionados para responder la pregunta.' "
+                    "- Prioriza información relevante y directamente relacionada con la pregunta. "
+                    "- Resume y sintetiza, no copies textualmente a menos que sea necesario. "
+
+                    "Formato de respuesta: "
+                    "- Respuesta clara y directa. "
+                    "- Si aplica, incluye un breve soporte citando el fragmento del texto."
                 ),
             },
             {"role": "user", "content": prompt},
@@ -92,12 +102,12 @@ def rag_responder(query: str, top_k: int = 4):
 PREGUNTA:
 {query}
 
-ARTÍCULOS RELEVANTES (EXTRACTOS DE NORMATIVA):
+PAGINA Y LIBRO RELEVANTES (EXTRACTOS DE INFORMACIÓN):
 {contexto}
 
 Instrucciones:
 - Responde de manera clara y pedagógica.
-- Indica explícitamente qué artículos usas.
+- Indica explícitamente qué paginas usas.
 - Si no hay información suficiente, respóndelo.
 """
 
@@ -110,17 +120,17 @@ Instrucciones:
 # 3. INTERFAZ STREAMLIT
 # ============================
 
-st.set_page_config(page_title="Asistente Legal de Tránsito", page_icon="🚦")
+st.set_page_config(page_title="Asistente educativo Javeriana", page_icon="🚦")
 
-st.title("🚦 Asistente Legal de Tránsito • Colombia")
-st.write("Consulta normativa oficial usando un sistema RAG (búsqueda + LLM).")
+st.title("🔬 Asistente Medicina Basada en la Evidencia • Facultad de medicina PUJ")
+st.write("Consulta bibliografía oficial usando un sistema RAG (búsqueda + LLM).")
 
 st.subheader("Preguntas sugeridas:")
 col1, col2, col3 = st.columns(3)
 
-q1 = "¿Qué debo hacer si me imponen un comparendo?"
-q2 = "¿Cuánto tiempo tengo para pagar una multa?"
-q3 = "¿En qué casos inmovilizan mi vehículo?"
+q1 = "¿Cuál es el mejor tratamiento inicial para la hipertensión?"
+q2 = "¿La metformina es efectiva en diabetes tipo 2?"
+q3 = "¿Qué es un ensayo clínico aleatorizado?"
 
 if col1.button(q1):
     st.session_state["pregunta"] = q1
@@ -133,7 +143,7 @@ if col3.button(q3):
 
 
 pregunta = st.text_input(
-    "Pregunta sobre tránsito, multas, licencias, señalización, etc:",
+    "Haz una pregunta sobre tratamientos, estudios, diagnósticos, etc:",
     value=st.session_state.get("pregunta", "")
 )
 
