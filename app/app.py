@@ -120,17 +120,17 @@ Instrucciones:
 # 3. INTERFAZ STREAMLIT
 # ============================
 
-st.set_page_config(page_title="Asistente educativo Javeriana", page_icon="🚦")
+st.set_page_config(page_title="Asistente educativo Javeriana", page_icon="🧪")
 
-st.title("🔬 Asistente Medicina Basada en la Evidencia • Facultad de medicina PUJ")
+st.title("🔬 Asistente MBE • Facultad de medicina PUJ")
 st.write("Consulta bibliografía oficial usando un sistema RAG (búsqueda + LLM).")
 
 st.subheader("Preguntas sugeridas:")
 col1, col2, col3 = st.columns(3)
 
-q1 = "¿Cuál es el mejor tratamiento inicial para la hipertensión?"
-q2 = "¿La metformina es efectiva en diabetes tipo 2?"
-q3 = "¿Qué es un ensayo clínico aleatorizado?"
+q1 = "¿Qué es la medicina basada en la evidencia?"
+q2 = "¿Cuál es la diferencia entre un estudio observacional y un ensayo clínico aleatorizado?"
+q3 = "¿Qué significa el nivel de evidencia de un estudio y cómo se clasifica?"
 
 if col1.button(q1):
     st.session_state["pregunta"] = q1
