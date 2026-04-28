@@ -120,17 +120,36 @@ Instrucciones:
 # 3. INTERFAZ STREAMLIT
 # ============================
 
-st.set_page_config(page_title="Asistente educativo Javeriana", page_icon="🚦")
+st.set_page_config(page_title="Asistente educativo Javeriana", page_icon="🧪")
 
-st.title("🔬 Asistente Medicina Basada en la Evidencia • Facultad de medicina PUJ")
-st.write("Consulta bibliografía oficial usando un sistema RAG (búsqueda + LLM).")
+st.title("🔬 Asistente MBE • Facultad de medicina PUJ")
 
+# --- Párrafo objetivo ---
+with st.expander("ℹ️ ¿Qué es este asistente?", expanded=False):
+    st.markdown(
+        """
+        Este asistente ha sido diseñado como una herramienta de apoyo académico para estudiantes 
+        de medicina que cursan la materia de Medicina Basada en la Evidencia. A través de un sistema 
+        de recuperación de información, permite consultar conceptos, metodologías y principios 
+        fundamentales de la MBE, facilitando la comprensión y aplicación de sus herramientas 
+        en el contexto clínico y académico.
+
+        Este asistente se basa en literatura académica reconocida en Medicina Basada en la Evidencia, incluyendo:
+        
+        🔹Painless Evidence-Based Medicine — Antonio L. Dans, Leonila F. Dans, Maria Asuncion A. Silvestre
+        🔹Users' Guides to the Medical Literature: A Manual for Evidence-Based Medicine — Gordon Guyatt, Drummond Rennie, Maureen O. Meade, Deborah J. Cook
+        """
+    )
+
+st.divider()
+
+# --- Preguntas sugeridas ---
 st.subheader("Preguntas sugeridas:")
 col1, col2, col3 = st.columns(3)
 
-q1 = "¿Cuál es el mejor tratamiento inicial para la hipertensión?"
-q2 = "¿La metformina es efectiva en diabetes tipo 2?"
-q3 = "¿Qué es un ensayo clínico aleatorizado?"
+q1 = "¿Qué es la medicina basada en la evidencia y cuáles son sus pasos principales?"
+q2 = "¿Cuál es la diferencia entre un estudio observacional y un ensayo clínico aleatorizado?"
+q3 = "¿Qué significa el nivel de evidencia de un estudio y cómo se clasifica?"
 
 if col1.button(q1):
     st.session_state["pregunta"] = q1
@@ -141,12 +160,11 @@ if col2.button(q2):
 if col3.button(q3):
     st.session_state["pregunta"] = q3
 
-
+# --- Input de pregunta ---
 pregunta = st.text_input(
     "Haz una pregunta sobre tratamientos, estudios, diagnósticos, etc:",
     value=st.session_state.get("pregunta", "")
 )
-
 
 if st.button("Consultar"):
     if pregunta.strip() == "":
@@ -157,3 +175,16 @@ if st.button("Consultar"):
 
         st.subheader("📌 Respuesta")
         st.write(respuesta)
+
+# --- Créditos al pie ---
+st.divider()
+st.markdown(
+    """
+    <div style='text-align: center; color: gray; font-size: 0.82em; padding: 10px 0'>
+        <b>Autores:</b> Yibby Gonzalez · Juan Ruiz &nbsp;|&nbsp;
+        <b>Profesores:</b> Juan Pablo Páramo · Fabián Gil <br>
+        📧 Contacto: <a href='mailto:gonzalez_yibby@javeriana.edu.co' style='color: gray;'>gonzalez_yibby@javeriana.edu.co</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
