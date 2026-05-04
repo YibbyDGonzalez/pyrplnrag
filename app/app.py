@@ -182,7 +182,7 @@ st.markdown(
     """
     <div style='text-align: center; color: gray; font-size: 0.82em; padding: 10px 0'>
         <b>Autores:</b> Yibby Gonzalez · Juan Ruiz &nbsp;|&nbsp;
-        <b>Profesores:</b> Juan Pablo Páramo · Fabián Gil <br>
+        <b>Profesores:</b> Juan Pájaro · Fabián Gil <br>
         📧 Contacto: <a href='mailto:gonzalez_yibby@javeriana.edu.co' style='color: gray;'>gonzalez_yibby@javeriana.edu.co</a>
     </div>
     """,
